@@ -1,3 +1,3 @@
 host="localhost"
-user="roots"
+user="root"
 password="Bhel@123"

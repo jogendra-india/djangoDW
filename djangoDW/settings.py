@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7hbj-5wh0i5uwexd$s-%s-@8fdxnc%h$(rfyilsfpms#!566j&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -81,7 +82,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'digitaltwin',
-        'USER':'roots',
+        'USER':'root',
         'PASSWORD':'Bhel@123',
         'HOST':'localhost',
         'PORT':'3306'

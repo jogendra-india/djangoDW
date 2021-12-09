@@ -70,20 +70,21 @@ def fetchData():
 
     del myresult
 
-    # print(raw_data_charting)
-
-            
-    # except:
-    #     pass
-
 fetchData()
 
 @api_view(['GET','POST'])
 def rawDataApi(request):
-    print(request.method)
+    # print(request.method)
+
+    
 
     if request.method=='POST':
-        print(request.POST)
+        captured_data=request.data
+        xaxis=raw_data_charting[captured_data['para1']][0:captured_data["datarange"]]
+        yaxis=raw_data_charting[captured_data['para2']][0:captured_data["datarange"]]
 
+        zipped_axis=[list(a) for a in zip(xaxis,yaxis)]
+        
+        return Response({'chartData':zipped_axis})
 
     return Response(column_list)
