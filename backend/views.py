@@ -25,7 +25,7 @@ def getTagDetails(request):
         for each_one in myresult:
             tagDetails[each_one[1]]=each_one[0]
         chart_options=[]
-        for i in range(10,len(tagDetails),10):
+        for i in range(10,len(raw_data),10):
             chart_options.append({ "label": f'{i}', "value": i })
             
     except:
