@@ -24,11 +24,16 @@ def getTagDetails(request):
         myresult=mycursor.fetchall()
         for each_one in myresult:
             tagDetails[each_one[1]]=each_one[0]
+        chart_options=[]
+        for i in range(10,len(tagDetails),10):
+            chart_options.append({ "label": f'{i}', "value": i })
             
     except:
-        tagDetails={"error":"nothing found"}
+        tagDetails="nothing found"
+        chart_options="nothing found"
 
-    return Response(tagDetails)
+
+    return Response ({'tagDetails':tagDetails,'chart_options':chart_options})
 
 context={}
 time_data=[]
