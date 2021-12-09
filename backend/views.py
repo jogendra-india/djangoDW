@@ -83,8 +83,13 @@ def rawDataApi(request):
         xaxis=raw_data_charting[captured_data['para1']][0:captured_data["datarange"]]
         yaxis=raw_data_charting[captured_data['para2']][0:captured_data["datarange"]]
 
-        zipped_axis=[list(a) for a in zip(xaxis,yaxis)]
+        data_to_push=[]
+
+        for i in range(captured_data["datarange"]):
+            data_to_push.append({"x":xaxis[i],"y":yaxis[i]})
+
+        # zipped_axis=[list(a) for a in zip(xaxis,yaxis)]
         
-        return Response({'chartData':zipped_axis})
+        return Response({'chartData':data_to_push})
 
     return Response(column_list)

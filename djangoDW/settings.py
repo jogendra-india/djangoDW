@@ -82,7 +82,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'digitaltwin',
-        'USER':'root',
+        'USER':'roots',
         'PASSWORD':'Bhel@123',
         'HOST':'localhost',
         'PORT':'3306'
