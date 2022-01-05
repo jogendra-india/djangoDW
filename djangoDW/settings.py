@@ -14,6 +14,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+from cassandra import ConsistencyLevel
 
 
 # Quick-start development settings - unsuitable for production
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'backend',
     'rest_framework',
     'corsheaders',
+    'django_cassandra_engine'
 
 ]
 
@@ -80,13 +82,30 @@ WSGI_APPLICATION = 'djangoDW.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'digitaltwin',
-        'USER':'root',
-        'PASSWORD':'Bhel@123',
-        'HOST':'localhost',
-        'PORT':'3306'
-        
+        'ENGINE': 'django_cassandra_engine',
+        'NAME': 'test_keyspaces',
+        'TEST_NAME': 'test_keyspace',
+        'HOST': '10.9.100.109',
+        'OPTIONS': {
+            'replication': {
+                'strategy_class': 'SimpleStrategy',
+                'replication_factor': 1
+                },
+
+             'connection': {
+                    'consistency': ConsistencyLevel.LOCAL_ONE,
+                    'retry_connect': True,
+                    'protocol_version': 4
+                    # + All connection options for cassandra.cluster.Cluster()
+            },
+
+            'session': {
+                    'default_timeout': 10,
+                    'default_fetch_size': 10000
+                    # + All options for cassandra.cluster.Session()
+                }
+
+        }
     }
 }
 
