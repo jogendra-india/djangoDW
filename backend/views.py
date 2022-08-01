@@ -6,6 +6,15 @@ from rest_framework.response import Response
 import mysql.connector
 from . import data_file
 
+from cassandra.cluster import Cluster
+cluster = Cluster(['10.9.100.109'])
+session = cluster.connect('digitaltwin')
+print("connected")
+
+rows = session.execute('select * from rawdata where partition =1 order by Time')
+for user_row in rows:
+    print(user_row[1])
+
 
 # Create your views here.
 

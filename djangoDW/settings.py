@@ -83,8 +83,8 @@ WSGI_APPLICATION = 'djangoDW.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django_cassandra_engine',
-        'NAME': 'test_keyspaces',
-        'TEST_NAME': 'test_keyspace',
+        'NAME': 'digitaltwin',
+        'TEST_NAME': 'digitaltwin',
         'HOST': '10.9.100.109',
         'OPTIONS': {
             'replication': {
